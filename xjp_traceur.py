@@ -161,27 +161,6 @@ subject = str('XJP Traceur: '+str(date) + ' with ' + str(len(data)) + ' new post
     #     break
 ################################################################################################
 
-def get_key_phrase(keyword,doc):
-    """
-    description: output sentences that contains the keyword and the sentence following.
-    parameters:
-        input:
-            keyword: a string, in single quotes
-            doc: a body of text in string or data['body'][0]
-        output: a list of sentences that contain the keyword and +1
-    """
-    import sys
-    # insert at 1, 0 is the script path (or '' in REPL)
-    sys.path.insert(1, r'need official policybot library download')
-    from policybot_sentiment import cut_sent
-    sent_list = cut_sent(doc)
-        #################### WITH NEW GOOGLE TRANSLATE API LIMIT 400 characters ################
-    xi_indice = [i for i, s in enumerate(sent_list) if keyword in s]
-    xi_indice=list(set(xi_indice))
-    try:
-        return [sent_list[i] for i in xi_indice]
-    except IndexError:
-        return [sent_list[i] for i in xi_indice[:-1]]
 
 
 ############################### Get Ready for HTML Codes ##########################################
@@ -193,14 +172,6 @@ translator = Translator()
 divider = str('<hr width="50%" size="8" align="center"> <hr yesshade>')
 
 
-for i in range(0,len(data)):
-    #if data['body'][i]:
-    all_phrases_of_doc = get_key_phrase('强调',data['body'][i])+get_key_phrase('指出',data['body'][i])+get_key_phrase('提出',data['body'][i])#+get_key_phrase('表示',data['body'][i])
-    all_phrases_of_doc =list(set(all_phrases_of_doc))
-    all_phrases_of_doc = ','.join(all_phrases_of_doc) #[0:200]
-    #print(all_phrases_of_doc)
-    all_news_en.append(['<h2 style="margin: 0;">'+ str(translator.translate(data['title'][i]).text) + '</h2>' + '<U><i> '+ str(translator.translate(data['article_source'][i]).text)+'</i></U>' + '<br>(KEY PHRASES): '+ str(translator.translate(str(all_phrases_of_doc)).text)+'...']) # 'title: '+ str(translator.translate(data['title'][i]).text),
-    all_news.append(['<br><B>[中文] TITLE: '+ str(data['title'][i])+'</B>'+' by '+ str(data['article_source'][i]) + '(KEY PHRASES): '+ str(all_phrases_of_doc) + '（SOURCE）: '+str(data['link'][i])+'</p>'+ str(divider)+'</br>'])
 
 
 ######################  ALTERNATE ENGLISH AND CHINESE FORMAT ###########################
