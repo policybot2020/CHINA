@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with pyComtrade.  If not, see <http://www.gnu.org/licenses/>.
 # ====================================================================
-# 12.29.2021 updates by Jianyin Roachell.
+# 12.29.2021 updates by Jianyin Roachell...work in progress
 
 from sys import exit
 from selenium.webdriver.support.ui import WebDriverWait
